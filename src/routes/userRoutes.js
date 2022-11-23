@@ -1,29 +1,19 @@
-const mongoose = require('mongoose');
+const express = require("express");
+const router = express.Router();
 
-//Modelo que cadastra o usuário
-const userSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: new Date()
-    }
-});
+const controller = require("../controllers/userController");
 
-//Exportar as informações do usuáro
-module.exports = mongoose.model('user', userSchema);
+        //Definir a rota e o verbo
+    //Visualizar todos usuários
+ router.get("/all", controller.getAll);
+    //Criar usuário
+ router.post("/create", controller.createUser);
+    //Adicinar Cliente
+ //router.post("/createClient", controllers.createUser);
+    //Excluir um usuário
+router.delete("/delete/:id", controller.deleteUserById);
+    //Atualizar email do usuário
+router.patch("/updateEmail/:id", controller.updateUserById);
+
+module.exports = router;
+ 

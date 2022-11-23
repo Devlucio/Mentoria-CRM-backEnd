@@ -10,5 +10,22 @@ app.use(cors());
 //Para ler as informações que vem do body
 app.use(express.json());
 
+//Importar modulo local
+const db = require('./config/database');
+const userRoutes = require('./routes/userRoutes');
+
+//Definir rota principal
+app.use("/users", userRoutes);
+
+
+
+
+//Inicializando o modulo do banco de dados
+db.connect();
+
+
+
+
+
 //Exportar modulo
 module.exports = app;
